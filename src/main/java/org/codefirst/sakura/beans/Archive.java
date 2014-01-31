@@ -1,5 +1,7 @@
 package org.codefirst.sakura.beans;
 
+import java.util.Date;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -26,6 +28,8 @@ public class Archive {
     // SourceDiskTemplate
     @XmlElement(name = "ServiceClass")
     public String serviceClass;
+    @XmlElement(name = "CreatedAt")
+    public Date createdAt;
 
     // CreatedAt
     // Plan

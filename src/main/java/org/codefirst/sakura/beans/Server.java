@@ -1,5 +1,6 @@
 package org.codefirst.sakura.beans;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -31,8 +32,15 @@ public class Server {
     public List<Interface> interfaces;
     @XmlElement(name = "ConnectedSwitches")
     public List<ConnectedSwitch> connectedSwitches;
+    @XmlElement(name = "CreatedAt")
+    public Date createdAt;
 
     public Server() {
         super();
+    }
+
+    public Server(String id) {
+        super();
+        this.id = id;
     }
 }
