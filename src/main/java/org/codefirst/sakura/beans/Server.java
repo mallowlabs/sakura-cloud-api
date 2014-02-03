@@ -21,7 +21,7 @@ public class Server {
     @XmlElement(name = "Disks")
     public List<Disk> disks;
     @XmlElement(name = "Tags")
-    public List<Disk> tags;
+    public List<String> tags;
     @XmlElement(name = "Icon")
     public Icon icon;
     @XmlElement(name = "ServerPlan")

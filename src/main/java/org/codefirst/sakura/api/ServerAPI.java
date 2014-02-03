@@ -3,6 +3,7 @@ package org.codefirst.sakura.api;
 import javax.ws.rs.core.Response;
 
 import org.codefirst.sakura.beans.Server;
+import org.codefirst.sakura.responses.InstanceResponse;
 import org.codefirst.sakura.responses.ResultResponse;
 import org.codefirst.sakura.responses.ServerResponse;
 import org.codefirst.sakura.responses.ServersResponse;
@@ -43,8 +44,25 @@ public class ServerAPI {
         return response.readEntity(ResultResponse.class);
     }
 
+    public InstanceResponse getPower(String serverId) {
+        Response response = endpoint.get(RESOURCE_NAME + "/" + serverId + "/power");
+        return response.readEntity(InstanceResponse.class);
+    }
+
     public ResultResponse putPower(String serverId) {
         Response response = endpoint.put(RESOURCE_NAME + "/" + serverId + "/power");
+        return response.readEntity(ResultResponse.class);
+    }
+
+    public ResultResponse deletePower(String serverId, boolean force) {
+        // XXX Jersey cannot send entity with request body
+        Response response = endpoint.delete(RESOURCE_NAME + "/" + serverId + "/power");
+        return response.readEntity(ResultResponse.class);
+    }
+
+    public ResultResponse putPower(String serverId, boolean recycleProcess) {
+        // TODO recycleProcess
+        Response response = endpoint.put(RESOURCE_NAME + "/" + serverId + "/reset");
         return response.readEntity(ResultResponse.class);
     }
 }
