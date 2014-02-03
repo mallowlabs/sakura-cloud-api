@@ -18,6 +18,8 @@ public class Server {
     public String description;
     @XmlElement(name = "ServiceClass")
     public String serviceClass;
+    @XmlElement(name = "Instance")
+    public Instance instance;
     @XmlElement(name = "Disks")
     public List<Disk> disks;
     @XmlElement(name = "Tags")
