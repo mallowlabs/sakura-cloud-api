@@ -21,11 +21,6 @@ public class DiskAPI {
         return response.readEntity(DisksResponse.class);
     }
 
-    public DiskResponse get(String diskId) {
-        Response response = endpoint.get(RESOURCE_NAME + "/" + diskId);
-        return response.readEntity(DiskResponse.class);
-    }
-
     public DiskResponse post(Disk disk) {
         DiskResponse diskResponse = new DiskResponse();
         diskResponse.disk = disk;
@@ -33,8 +28,20 @@ public class DiskAPI {
         return response.readEntity(DiskResponse.class);
     }
 
-    public ResultResponse putToServer(String diskId, String serverId) {
-        Response response = endpoint.put(RESOURCE_NAME + "/" + diskId + "/to/server/" + serverId);
+    public DiskResponse get(String diskId) {
+        Response response = endpoint.get(RESOURCE_NAME + "/" + diskId);
+        return response.readEntity(DiskResponse.class);
+    }
+
+    public DiskResponse put(Disk disk) {
+        DiskResponse diskResponse = new DiskResponse();
+        diskResponse.disk = disk;
+        Response response = endpoint.put(RESOURCE_NAME + "/" + disk.id, diskResponse);
+        return response.readEntity(DiskResponse.class);
+    }
+
+    public ResultResponse delete(String diskId) {
+        Response response = endpoint.delete(RESOURCE_NAME + "/" + diskId);
         return response.readEntity(ResultResponse.class);
     }
 
@@ -42,4 +49,25 @@ public class DiskAPI {
         Response response = endpoint.put(RESOURCE_NAME + "/" + diskId + "/config");
         return response.readEntity(ResultResponse.class);
     }
+
+    public ResultResponse putInstall(String diskId) {
+        Response response = endpoint.put(RESOURCE_NAME + "/" + diskId + "/install");
+        return response.readEntity(ResultResponse.class);
+    }
+
+    public ResultResponse putToBlank(String diskId) {
+        Response response = endpoint.put(RESOURCE_NAME + "/" + diskId + "/blank");
+        return response.readEntity(ResultResponse.class);
+    }
+
+    public ResultResponse deleteToServer(String diskId) {
+        Response response = endpoint.delete(RESOURCE_NAME + "/" + diskId + "/to/server");
+        return response.readEntity(ResultResponse.class);
+    }
+
+    public ResultResponse putToServer(String diskId, String serverId) {
+        Response response = endpoint.put(RESOURCE_NAME + "/" + diskId + "/to/server/" + serverId);
+        return response.readEntity(ResultResponse.class);
+    }
+
 }

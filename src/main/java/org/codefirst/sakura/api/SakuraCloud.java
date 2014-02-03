@@ -66,6 +66,13 @@ public class SakuraCloud {
         return put(path, new Empty());
     }
 
+    protected Response delete(String path) {
+        Client client = newClient();
+        WebTarget target = client.target(getEndPoint()).path(path);
+        Response response = target.request(MediaType.APPLICATION_JSON_TYPE).delete();
+        return response;
+    }
+
     protected Client newClient() {
         Client client = ClientBuilder.newClient();
         HttpAuthenticationFeature feature = HttpAuthenticationFeature.basic(this.accessToken, this.accessTokenSecret);

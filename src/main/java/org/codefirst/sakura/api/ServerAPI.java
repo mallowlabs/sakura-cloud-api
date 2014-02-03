@@ -21,15 +21,26 @@ public class ServerAPI {
         return response.readEntity(ServersResponse.class);
     }
 
+    public ServerResponse post(Server server) {
+        ServerResponse serverResponse = new ServerResponse(server);
+        Response response = endpoint.post(RESOURCE_NAME, serverResponse);
+        return response.readEntity(ServerResponse.class);
+    }
+
     public ServerResponse get(String serverId) {
         Response response = endpoint.get(RESOURCE_NAME + "/" + serverId);
         return response.readEntity(ServerResponse.class);
     }
 
-    public ServerResponse post(Server server) {
-        ServerResponse serverResponse = new ServerResponse(server);
-        Response response = endpoint.post(RESOURCE_NAME, serverResponse);
+    public ServerResponse put(Server server) {
+        Response response = endpoint.put(RESOURCE_NAME + "/" + server.id);
         return response.readEntity(ServerResponse.class);
+    }
+
+    public ResultResponse delete(String serverId, boolean force, int... diskIds) {
+        // XXX Jersey cannot send entity with request body
+        Response response = endpoint.delete(RESOURCE_NAME + "/" + serverId);
+        return response.readEntity(ResultResponse.class);
     }
 
     public ResultResponse putPower(String serverId) {
